@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments</title>
+    <%- include('./partials/navCss') %>
+    <style>
+        main{
+            background-color: antiquewhite;
+            width: 80%;
+            margin-left: 20%;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .pop-up{
+            border: .2rem solid;
+            background-color: aquamarine;
+            font-size: 2rem;
+            border-radius: .3rem;
+            width: 60%;
+            padding: .6rem 1rem;
+        }
+        form{
+            padding: 1.5rem;
+            margin: 2rem auto;
+            border-radius: .3rem;
+        }
+        form label{
+            font-size: 1.4rem;
+        }
+        form input{
+            padding: .5rem;
+            font-size: 1.5rem ;
+        }
+        form button{
+            display: block;
+            padding: .5rem 1rem;
+            font-size: 1.5rem;
+            margin: 1rem auto;
+            border: .1rem solid;
+            border-radius: .3rem;
+        }
+        .after{
+            margin: 3rem;
+            padding: 1rem;
+            border: .1rem solid black;
+            border-radius: .3rem;
+        }
+        .name{
+            margin: 2rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+        .msg{
+            padding: 2rem;
+            font-size: 1.5rem;
+            display: grid;
+            border: .1rem solid;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .msg a{
+            text-decoration: none;
+            color: inherit;
+            margin: 3rem auto;
+            width: fit-content;
+            text-align: center;
+            padding: .5rem 1rem;
+            background-color: aquamarine;
+            border-radius: .3rem;
+        }
+        .new_msg{
+            border: .2rem solid aquamarine;
+            border-radius: .3rem;
+            font-size: 1.5rem;
+            padding: 2rem;
+            width: fit-content;
+            margin: 2rem auto;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <main>
+        <div class="pop-up">
+            Scan card to start payment
+        </div>
+        <% if ( msg!="" ) { %>
+            <div class="new_msg">
+                <%- msg %>
+            </div>
+        <% } %>
+        <% if (display) { %>
+        <div class="after">
+            <div class="name">
+                Sree Harsha
+            </div>
+            <form action="/payments/processing" method="post">
+                <label for="amount"> Enter total amount to be paid </label>
+                <input type="text" id="amount" name="amount" placeholder="30000" autocomplete="off">
+                <button type="submit"> Proceed </button>
+            </form>
+        </div>
+        <% } else { %>
+            <div class="msg">
+                Press Start after Scanning card
+                <a href="/payments"> Start </a>
+            </div>
+            
+        <% } %>
+    </main>
+</body>
+</html>

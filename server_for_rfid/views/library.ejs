@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <%- include('./partials/navCss') %>
+    <style>
+        main{
+            background-color: antiquewhite;
+            width: 80%;
+            margin-left: 20%;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .pop-up{
+            border: .2rem solid;
+            background-color: aquamarine;
+            font-size: 2rem;
+            border-radius: .3rem;
+            width: 50%;
+            padding: .6rem 1rem;
+        }
+        form{
+            padding: 1.5rem;
+            margin: 2rem auto;
+            border-radius: .3rem;
+            display: grid;
+            gap: 1rem;
+        }
+        form input, form label, button{
+            font-size: 1.5rem;
+        }
+        form input{
+            padding: .5rem;
+            width: 80%;
+        }
+        form button{
+            width: fit-content;
+            padding: .5rem 1rem;
+            border: .1rem solid;
+            border-radius: .3rem;
+            margin: 1rem auto;
+        }
+        .msg{
+            padding: 2rem;
+            font-size: 1.5rem;
+            display: grid;
+            border: .1rem solid;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .msg a{
+            text-decoration: none;
+            color: inherit;
+            margin: 3rem auto;
+            width: fit-content;
+            text-align: center;
+            padding: .5rem 1rem;
+            background-color: aquamarine;
+            border-radius: .3rem;
+        }
+        .new_msg{
+            border: .2rem solid aquamarine;
+            border-radius: .3rem;
+            font-size: 1.5rem;
+            padding: 2rem;
+            width: fit-content;
+            margin: 2rem auto;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <main>
+        <div class="pop-up">
+            Scan card for book
+        </div>
+        <% if ( msg!="" ) { %>
+            <div class="new_msg">
+                <%- msg %>
+            </div>
+        <% } %>
+        <% if (locals.display) { %>
+        <div class="after">
+            <form action="/library/record" method="post" >
+                <label for="bookName"> Enter Book name : </label>
+                <input type="text" placeholder="M. sree harsha" autocomplete="off" id="bookName" name="bookName" required>
+                <label for="book-no"> Enter Book name no : </label>
+                <input type="text" placeholder="234567" autocomplete="off" id="book-no" name="bookNo" required>
+                <button type="submit"> Assign </button>
+            </form>
+        </div>
+        <% } else { %>
+            <div class="msg">
+                Press Start after Scanning card
+                <a href="/library"> Start </a>
+            </div>
+        <% } %>
+    </main>  
+</body>
+</html>
